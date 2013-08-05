@@ -8,7 +8,7 @@ module Jekyll
     end
 
     # Valid post name regex.
-    MATCHER = /^(.+\/)*(\d+-\d+-\d+)-(.*)(\.[^.]+)$/
+    MATCHER = /^(.+\/)*(.*)(\.[^.]+)$/
 
     EXCERPT_ATTRIBUTES_FOR_LIQUID = %w[
       title
@@ -153,8 +153,8 @@ module Jekyll
     #
     # Returns nothing.
     def process(name)
-      m, cats, date, slug, ext = *name.match(MATCHER)
-      self.date = Time.parse(date)
+      m, cats, slug, ext = *name.match(MATCHER)
+      self.date = Time.now
       self.slug = slug
       self.ext = ext
     rescue ArgumentError
